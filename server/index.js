@@ -6,6 +6,11 @@ import dotenv from 'dotenv';
 import helmet from 'helmet'; // Helmet helps you secure your Express apps by setting various HTTP headers. It's not a silver bullet, but it can help!
 import morgan from 'morgan'; // HTTP request logger middleware for node.js
 
+import client from './routes/client.js';
+import general from './routes/general.js';
+import management from './routes/management.js';
+import sales from './routes/sales.js';
+
 
 // Configerations
 
@@ -22,8 +27,22 @@ app.use(express.json());
 
 // Routes
 
-app.use("/client", require("./routes/client"));
-app.use("/general", require("./routes/general"));
-app.use("/management", require("./routes/management"));
-app.use("/sales", require("./routes/sales"));
+app.use('/client', client);
+app.use('/general', general);
+app.use('/management', management);
+app.use('/sales', sales);
 
+
+// Database connection
+
+const PORT = process.env.PORT || 9000; // To use the port from the .env file or 9000
+mongoose.connect(process.env.MONGO_URL,{
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+}).then(() => {
+    app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+    });
+}).catch((error) => {
+    console.log(error);
+});
