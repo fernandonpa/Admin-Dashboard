@@ -56,9 +56,7 @@ Thumbs.db
 ehthumbs.db
 Desktop.ini
 
-# NPM Packages
-package-lock.json
-yarn.lock
+
 
 # React-specific files
 *.env.development
