@@ -1,5 +1,3 @@
-// use to understand the project stucture
-// absolute import start from src folder
 {
     "compilerOptions": {
         "baseUrl": "src"
